@@ -1,0 +1,175 @@
+{% extends "base.html"%}
+
+{% load static %}
+{% block title%}Ekibimiz |{{copany.company_name}}{%endblock%}
+{% block meta_description%}{{employee.text}}{%endblock%}
+{% block extra_meta %}
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ object.image.url }}">
+    <meta property="og:image" content="{{ teampage.hero_image.url }}">
+{% endblock %}
+{% block extra_css%}
+<style>/* ===== Reset ===== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+/* ===== Body ===== */
+body{
+    background:#020617;
+    color:#e0e0e0;
+    line-height:1.6;
+    overflow-x:hidden;
+}
+
+/* ===== Hero ===== */
+.hero{
+    height: clamp(40vh, 60vh, 70vh);
+    background:
+        linear-gradient(rgba(2,6,23,0.6), rgba(2,6,23,0.6)),
+        url("  /media/team_hero/team_hero.jpeg");
+        
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding: 20px;
+}
+
+.hero h1{
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight:700;
+    color:white;
+    letter-spacing:1px;
+}
+
+/* ===== Team Section ===== */
+.team{
+    padding: clamp(60px, 8vw, 100px) 20px;
+    text-align:center;
+}
+
+.team h2{
+    font-size: clamp(24px, 3vw, 38px);
+    margin-bottom:15px;
+}
+
+.team p{
+    font-size: clamp(13px, 1.5vw, 16px);
+    color:#94a3b8;
+    margin-bottom:40px;
+}
+
+/* ===== Grid ===== */
+.team-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: clamp(15px, 3vw, 30px);
+    align-items: stretch;
+}
+
+/* ===== Card ===== */
+.member{
+    background:rgba(255,255,255,0.03);
+    border-radius:16px;
+    padding: clamp(18px, 3vw, 30px);
+    transition:0.3s;
+    overflow:hidden;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+
+    min-height: 100%;
+}
+
+.member:hover{
+    transform:translateY(-8px) scale(1.02);
+    border:1px solid #3b82f6;
+}
+
+.member img{
+    width: clamp(80px, 12vw, 120px);
+    height: clamp(80px, 12vw, 120px);
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:15px;
+    transition:0.3s;
+}
+
+.member img:hover{
+    transform:scale(1.05);
+}
+
+.member h4{
+    margin-bottom:5px;
+    color:white;
+    font-size: clamp(15px, 2vw, 18px);
+}
+
+.member span{
+    color:#60a5fa;
+    font-size: clamp(12px, 1.5vw, 14px);
+    margin-bottom:10px;
+}
+
+.member p{
+    color:#cbd5e1;
+    font-size: clamp(12px, 1.5vw, 14px);
+    line-height:1.5;
+}
+
+</style>
+{% endblock %}
+
+
+{% block content%}
+
+<!-- Hero -->
+<section class="hero">
+<div class="parallax-bg" style="background-image: url('/media/team_hero/team_hero.jpeg');"></div>
+
+<div class="container">
+
+
+<h1>{{teampage.title}}</h1>
+<p>{{teampage.text}}</p>
+
+</div>
+</section>
+
+<!-- Team Section -->
+<section class="team">
+<div class="container">
+
+<div class="team-grid">
+{% for emp in employees %}
+<div class="member">
+    {% if emp.photo %}
+        <img src="{{ emp.photo.url }}" alt="{{ emp.name }}">
+    {% endif %}
+    <h4>{{ emp.name }}</h4>
+    <span>{{ emp.position }}</span>
+    <p>{{ emp.bio }}</p>
+</div>
+{% empty %}
+<p style="color:#00c6ff;">لا يوجد موظفين حالياً</p>
+{% endfor %}
+</div>
+</div>
+</section>
+
+
+<script>
+const wrapper = document.getElementById('menuWrapper');
+const icon = document.getElementById('menu-icon');
+wrapper.addEventListener('mouseenter', ()=>{ icon.classList.replace('fa-bars','fa-times'); });
+wrapper.addEventListener('mouseleave', ()=>{ icon.classList.replace('fa-times','fa-bars'); });
+</script>
+
+{% endblock %}

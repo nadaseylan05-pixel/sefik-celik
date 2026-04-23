@@ -1,0 +1,390 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Hakkımızda | {{ company.company_name }}
+{% endblock %}
+
+{% block meta_description %}{{ content.hero_text }}{% endblock %}
+
+{% block extra_meta %}
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ object.image.url }}">
+    <meta property="og:image" content="{{ content.hero_image.url }}">
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ===== Reset ===== */
+*{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+
+/* ===== Body ===== */
+body{ background:#020617; color:#e5e7eb; line-height:1.6; overflow-x:hidden; }
+
+/* =============================
+   🎨 DESIGN SYSTEM (ROOT)
+============================= */
+:root{
+
+    /* ===== Colors ===== */
+    --primary: #3b82f6;
+    --text-light: #cbd5e1;
+    --text-muted: #94a3b8;
+    --bg-dark: #020617;
+
+    /* ===== Spacing (Responsive) ===== */
+    --space-sm: clamp(12px, 2vw, 16px);
+    --space-md: clamp(16px, 3vw, 24px);
+    --space-lg: clamp(24px, 4vw, 32px);
+    --space-xl: clamp(32px, 6vw, 48px);
+
+    /* ===== Font Sizes ===== */
+    --text-sm: clamp(14px, 1.5vw, 16px);
+    --text-md: clamp(16px, 2vw, 18px);
+    --text-lg: clamp(18px, 2.5vw, 22px);
+    --text-xl: clamp(24px, 4vw, 32px);
+    --text-xxl: clamp(28px, 5vw, 42px);
+
+    /* ===== Radius ===== */
+    --radius: 16px;
+}
+
+/* =============================
+   🌍 GLOBAL
+============================= */
+body{
+    margin:0;
+    font-family: sans-serif;
+    background: var(--bg-dark);
+    color:white;
+}
+
+img{
+    max-width:100%;
+    height:auto;
+}
+
+/* =============================
+   🏆 HERO
+============================= */
+.hero{
+    position: relative;
+    height: 60vh;
+    min-height:300px;
+    background:
+        linear-gradient(rgba(2,6,23,0.5), rgba(2,6,23,0.7)),
+        url('{{ content.hero_image.url }}') no-repeat center center;
+    background-size: cover;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding: var(--space-lg);
+}
+
+.hero h1{
+    font-size: var(--text-xxl);
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.hero p{
+    margin-top: var(--space-sm);
+    font-size: var(--text-lg);
+    color: var(--text-light);
+}
+
+/* =============================
+   📄 ABOUT
+============================= */
+.about{
+    padding: var(--space-xl) var(--space-md);
+    text-align:center;
+}
+
+.about h2{
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-sm);
+}
+
+.about p{
+    max-width:800px;
+    margin:auto;
+    color: var(--text-light);
+    line-height:1.8;
+}
+
+/* =============================
+   🧩 CARDS (Responsive)
+============================= */
+
+.cards{
+    margin-top: var(--space-lg);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: clamp(12px, 2vw, 24px);
+}
+
+.card{
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(10px);
+
+    padding: clamp(14px, 2.5vw, 28px);
+
+    border-radius: var(--radius);
+
+    border: 1px solid rgba(255,255,255,0.05);
+
+    position: relative;
+    overflow: hidden;
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* ✨ hover */
+.card:hover{
+    transform: translateY(-6px);
+    border-color: var(--primary);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+.card h3{
+    color: var(--primary);
+    margin-bottom: var(--space-sm);
+    font-size: clamp(16px, 2vm, 22px);
+}
+
+.card p{
+    color: var(--text-light);
+    font-size: clamp(13px, 1.5vm, 16px);
+    line-height: 1.7;
+}
+/* ✨ shine effect */
+.card::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(59,130,246,0.25),
+        transparent
+    );
+
+    left:-100%;
+    top:0;
+    transition:0.6s;
+}
+
+.card:hover::before{
+    left:100%;
+}
+
+/* =============================
+   📊 STATS
+============================= */
+.stats{
+    padding: var(--space-xl) var(--space-md);
+    background: var(--bg-dark);
+}
+
+.stat-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: clamp(12px, 2vw, 24px);
+    text-align: center;
+}
+
+.stat{
+    background: #0b1120;
+    
+    padding: clamp(14px, 2vw, 24px); /* 🔥 مرن */
+    border-radius: 14px;
+
+    border: 1px solid rgba(59,130,246,0.25);
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+
+    text-align: center;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+}
+
+.stat h2{
+    font-size: clamp(22px, 4vw, 40px); /* 🔥 مرن جدًا */
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.stat p{
+    font-size: clamp(12px, 2vw, 16px);
+    color: var(--text-muted);
+}
+
+/* =============================
+   👥 TEAM
+============================= */
+.team{
+    padding: var(--space-xl) var(--space-md);
+    text-align:center;
+}
+
+.team h2{
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-sm);
+}
+
+.team p{
+    font-size: var(--text-md);
+    color: var(--text-muted);
+    margin-bottom: var(--space-lg);
+}
+
+.team-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap: var(--space-md);
+}
+
+.member{
+    background:rgba(255,255,255,0.03);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    transition:0.3s;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+}
+
+.member:hover{
+    transform:translateY(-8px) scale(1.02);
+    border:1px solid var(--primary);
+}
+
+.member img{
+    width: clamp(80px, 10vw, 120px);
+    height: clamp(80px, 10vw, 120px);
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom: var(--space-sm);
+}
+
+.member h4{
+    margin-bottom:5px;
+    font-size: var(--text-md);
+}
+
+.member span{
+    color: var(--primary);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-sm);
+}
+
+.member p{
+    color: var(--text-light);
+    font-size: var(--text-sm);
+    line-height:1.5;
+}
+
+/* =============================
+   🔻 FOOTER
+============================= */
+
+</style>
+
+{% endblock %}
+
+{% block content%}
+
+<!-- Hero -->
+<section class="hero">
+<div class="container">
+<h1>{{ content.hero.title }}</h1>
+<p>{{ content.hero.text }}</p>
+</div>
+</section>
+
+<!-- About -->
+<section class="about">
+<div class="container">
+<h2>{{ content.about_title }}</h2>
+<p>{{ content.about_text }}</p>
+
+<div class="cards">
+<div class="card">
+<h3>{{ content.vision_title }}</h3>
+<p>{{ content.vision_text }}</p>
+</div>
+<div class="card">
+<h3>{{ content.mission_title }}</h3>
+<p>{{ content.mission_text }}</p>
+</div>
+<div class="card">
+<h3>{{ content.values_title }}</h3>
+<p>{{ content.values_text }}</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Stats -->
+<section class="stats">
+<div class="container">
+<div class="stat-grid">
+<div class="stat"><h2>{{content.stat1_number}}</h2><p>{{content.stat1_text}}</p></div>
+<div class="stat"><h2>{{content.stat2_number}}</h2><p>{{content.stat2_text}}</p></div>
+<div class="stat"><h2>{{content.stat3_number}}</h2><p>{{content.stat3_text}}</p></div>
+<div class="stat"><h2>{{content.stat4_number}}</h2><p>{{content.stat4_text}}</p></div>
+</div>
+</div>
+</section>
+
+<!-- Team Section -->
+<section class="team">
+<div class="container">
+<h2>Ekibimiz</h2>
+
+<div class="team-grid">
+{% for emp in employees %}
+<div class="member">
+
+    {% if emp.photo %}
+        <img src="{{ emp.photo.url }}" alt="{{ emp.name }}" loading="lazy">
+    {% endif %}
+
+    {% if emp.name %}
+        <h4>{{ emp.name }}</h4>
+    {% endif %}
+    
+    <!--<p>{{ emp.bio }}</p>-->
+</div>
+
+{% empty %}
+<p style="color:#00c6ff;">لا يوجد موظفين حالياً</p>
+{% endfor %}
+</div>
+</div>
+</section>
+
+<!-- Footer
+<footer>
+<p>{{ content1.footer_text|default:"2026 Global Company. Tüm hakları saklıdır." }}</p>
+</footer>
+ -->
+<script>
+const wrapper = document.getElementById('menuWrapper');
+const icon = document.getElementById('menu-icon');
+wrapper.addEventListener('mouseenter', ()=>{ icon.classList.replace('fa-bars','fa-times'); });
+wrapper.addEventListener('mouseleave', ()=>{ icon.classList.replace('fa-times','fa-bars'); });
+</script>
+
+
+{% endblock %}

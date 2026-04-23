@@ -1,0 +1,240 @@
+{% extends "base.html"%}
+{% load static %}
+{% block title%}{{ company.company_name }}{%endblock%}
+{% block meta_description %}{{ home_content.main_subtitle }}{% endblock %}
+
+{% block extra_meta %}
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ company.homepage_image.url }}">
+{% endblock %}
+
+{% block extra_css%}
+<style>
+        
+    /* 1. General Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', 'Segoe UI', sans-serif;
+    }
+
+    body {
+        background: #0a0a0a;
+        color: #e0e0e0;
+        min-height: 100vh;
+        line-height: 1.6;
+
+    }
+
+    /* 2. HERO SECTION  */
+    .hero-section {
+        position: relative;
+        width: 100%;
+        height: 600px; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        
+        padding-top: 75px; 
+    }
+
+    .parallax-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 120%; 
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed; 
+        z-index: -1;
+        filter: brightness(0.4); 
+    }
+
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        background: linear-gradient(to bottom, rgba(10,10,10,0.2), #0a0a0a);
+        z-index: 0;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        max-width: 900px;
+        padding: 0 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+        color: #fff;
+        margin-bottom: 20px;
+        text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        color: #ccc;
+        margin-bottom: 10px;
+    }
+
+    .arabic-text {
+        direction: rtl;
+        font-size: 1.4rem !important;
+        color: #00c6ff !important;
+        margin-top: 20px;
+    }
+
+
+    .custom-footer-area {
+        background-color: #0a0a0a; 
+        padding: 60px 0 20px 0;
+    }
+
+    .custom-footer-container {
+        width: 85%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        
+        justify-content: flex-start; 
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 80px; 
+    }
+
+   
+    .footer-column {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        text-align: left;     
+        align-items: flex-start; 
+    }
+
+    
+    .footer-column p {
+        display: flex;
+        align-items: center;
+        gap: 10px; 
+        margin: 0;
+        justify-content: flex-start; 
+    }
+
+  
+    .footer-column.align-right {
+        text-align: left; 
+        align-items: flex-start;
+    }
+
+    
+    .social-links-wrapper {
+        display: flex;
+        gap: 15px;
+        justify-content: flex-start; 
+    }
+
+    .social-links-wrapper a {
+        color: #e6ebed;
+        font-size: 1.3rem;
+        transition: 0.3s;
+    }
+
+    .social-links-wrapper a:hover {
+        color: #00c6ff;
+    }
+
+    .custom-footer-bottom {
+        width: 85%;
+        margin: 40px auto 0;
+        padding-top: 20px;
+        border-top: 1px solid rgba(236, 225, 225, 0.05);
+        text-align: center; 
+        color: #f4f9f9;
+    }
+
+    /* 4. SPACER */
+    .spacer {
+        height: 400px; 
+        background: #0a0a0a;
+    }
+</style>
+{% endblock %}
+{% block content %}
+    
+
+    <!-- Welcome section with animated background -->
+    <header class="hero-section">
+        
+        <div class="hero-overlay"></div>
+        {% if company.homepage_image %}
+            <div class="parallax-bg" style="background-image: url('{{ company.homepage_image.url }}');"></div>
+        {% else %}
+            <div class="parallax-bg" style="background-color: #000;"></div>
+        {% endif %}
+        <div class="hero-content">
+            <h1>{{content.home_title}}</h1>
+            <p>{{content.home_text}}</p>
+            
+        </div>
+    </header>
+
+    <!-- Additional space scroll experimentation -->
+    <div class="spacer">
+        <div style="padding: 100px; text-align: center;">
+            <h2 style="color: #00c6ff;">Amacımız, her müvekkilimize özel çözümler sunarak en yüksek memnuniyeti sağlamaktır.</h2>
+            
+        </div>
+    </div>
+
+        <footer class="custom-footer-area">
+        <div class="custom-footer-container">
+            <div class="footer-column">
+                <h3 style="color: rgb(106, 116, 90);">İletişim</h3>
+                <p style="color: rgb(106, 116, 90);"><i class="fa fa-phone"></i> {{company.phone}}</p>
+                <p style="color: rgb(106, 116, 90);"><i class="fa fa-envelope"></i> {{company.email}}</p>
+                <p style="color: rgb(106, 116, 90);"><i class="fa fa-map-marker-alt"></i> {{company.address}}</p>
+            </div>
+
+            <div class="footer-column align-right">
+                <h3>Bizi takip edin</h3>
+                <div class="social-links-wrapper">
+                    <a href="{{company.facebook}}"><i class="fab fa-facebook-f"></i></a>
+                    <a href="{{company.linkedin}}"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="{{company.instagram}}"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="custom-footer-bottom">
+            <p>{{content.footer_text}}</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const wrapper = document.getElementById('menuWrapper');
+        const icon = document.getElementById('menu-icon');
+
+        if (wrapper && icon) {
+
+            wrapper.addEventListener('mouseenter', () => {
+                icon.classList.replace('fa-bars', 'fa-times');
+            });
+
+            wrapper.addEventListener('mouseleave', () => {
+                icon.classList.replace('fa-times', 'fa-bars');
+            });
+
+        }
+
+    });
+    </script>
+{% endblock %}

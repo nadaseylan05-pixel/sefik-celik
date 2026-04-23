@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block meta_description %}{{ page.hero_text }}{% endblock %}
+
+{% block title %} Blog | {{ company.company_name }} {% endblock %}
+
+
+{% block extra_meta %}
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ object.image.url }}">
+    <meta property="og:image" content="{{ company.homepage_image.urlpage.page_image.url }}">
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    
+    body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, sans-serif !important;
+        background: #f4f6f98c !important;
+        color: #222 !important;
+    }
+
+   
+    .hero img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.55);
+    }
+    .hero-content {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff !important;
+        text-align: center;
+        width: 90%;
+    }
+
+    
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 60px 20px;
+    }
+    
+    .grid {
+        display: grid;
+
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        
+        align-items: start;
+         
+    }
+
+    
+    .card {
+        
+        background: #fff !important;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.06) !important;
+        transition: 0.3s ease;
+        display: flex;
+        flex-direction: column;
+            
+    }
+
+    .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 40px rgba(0,0,0,0.12) !important;
+    }
+
+    .card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+   
+    .card:hover img {
+        transform: scale(1.1);
+    }
+
+    .card-body {
+        padding: 22px;
+    }
+
+    .card-body h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: #1f2937;
+    }
+
+    .card-body p {
+        line-height: 1.6;
+        color: #444 !important;
+        font-size: 15px;
+    }
+
+    .date {
+        margin-top: 12px;
+        font-size: 13px;
+        color: #999 !important;
+    }
+    @media (max-width: 600px) {
+        .container {
+            padding: 40px 15px;
+        }
+
+        .card img {
+            height: 180px;
+        }
+
+        .card-body {
+            padding: 18px;
+        }
+
+        .card-body h2 {
+            font-size: 18px;
+        }
+
+        .card-body p {
+            font-size: 14px;
+        }
+    }
+    
+    .read-btn {
+        display: inline-block;
+        margin-top: 14px;
+        padding: 10px 18px;
+        border-radius: 8px;
+        background: #111 !important;
+        color: #fff !important;
+        text-decoration: none;
+        font-size: 14px;
+        transition: 0.3s;
+        border: none;
+        cursor: pointer;
+    }
+    .read-btn:hover {
+        background: #444 !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Navbar -->
+
+<!-- HERO -->
+{% if page %}
+<section class="hero">
+    <img src="{{ page.page_image.url }}">
+    <div class="hero-content">
+        <h1>{{ page.page_title }}</h1>
+       <!--<p>{{ page.hero_text }}</p>--> 
+    </div>
+</section>
+{% endif %}
+
+<!-- BLOG CARDS -->
+<div class="container">
+    <div class="grid">
+
+        {% for job in jobs %}
+
+        <div class="card">
+
+            <div class="card-body">
+
+                <h2>{{ job.title }}</h2>
+
+                <p class="short-text">{{ job.description|truncatewords:28 }}</p>
+
+                <p class="full-text" style="display:none;">
+                    {{ job.description }}
+                </p>
+
+                <div class="date">
+                    Yayın Tarihi: {{ job.posted_date|date:"d M Y" }}
+                </div>
+
+                <a href="#" class="read-btn" onclick="
+                    const card = this.closest('.card-body');
+                    const shortText = card.querySelector('.short-text');
+                    const fullText = card.querySelector('.full-text');
+
+                    if(fullText.style.display === 'none' || fullText.style.display === '') {
+                        fullText.style.display = 'block';
+                        shortText.style.display = 'none';
+                        this.innerText = 'Daha az göster';
+                    } else {
+                        fullText.style.display = 'none';
+                        shortText.style.display = 'block';
+                        this.innerText = 'Devamını oku';
+                    }
+                    return false;
+                ">
+                    Devamını oku
+                </a>
+
+            </div>
+        </div>
+        {% empty %}
+            <p>Henüz blog yazısı yok.</p>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
+
+<!-- Footer 
+<footer>
+    <p>{{ content1.footer_text }}</p>
+</footer>
+-->
+<script>
+const wrapper = document.getElementById('menuWrapper');
+const icon = document.getElementById('menu-icon');
+wrapper.addEventListener('mouseenter', ()=>{ icon.classList.replace('fa-bars','fa-times'); });
+wrapper.addEventListener('mouseleave', ()=>{ icon.classList.replace('fa-times','fa-bars'); });
+</script>
+
+{% endblock %}

@@ -355,18 +355,16 @@ img{
 <div class="team-grid">
 {% for emp in employees %}
 <div class="member">
-
     {% if emp.photo %}
-        <img src="{{ emp.photo.url }}" alt="{{ emp.name }}" loading="lazy">
+        <a href="{% url 'ekibimiz' %}#emp-{{ emp.id }}">
+            <img src="{{ emp.photo.url }}" alt="{{ emp.name }}" loading="lazy" style="cursor: pointer;">
+        </a>
     {% endif %}
 
     {% if emp.name %}
         <h4>{{ emp.name }}</h4>
     {% endif %}
-    
-    <!--<p>{{ emp.bio }}</p>-->
 </div>
-
 {% empty %}
 <p style="color:#00c6ff;">لا يوجد موظفين حالياً</p>
 {% endfor %}

@@ -159,16 +159,13 @@ html{
 
 <div class="team-grid">
 {% for emp in employees %}
-<div class="member">
-    {% if emp.photo %}
+<div class="member" id="emp-{{ emp.id }}"> {% if emp.photo %}
         <img src="{{ emp.photo.url }}" alt="{{ emp.name }}">
     {% endif %}
     <h4>{{ emp.name }}</h4>
     <span>{{ emp.position }}</span>
     <p>{{ emp.bio }}</p>
 </div>
-{% empty %}
-<p style="color:#00c6ff;">لا يوجد موظفين حالياً</p>
 {% endfor %}
 </div>
 </div>

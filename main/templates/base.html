@@ -162,8 +162,10 @@
         });
 
         // تأثير بسيط عند التمرير (تغيير شفافية البار)
-        window.addEventListener('scroll', () => {
+       window.addEventListener('scroll', () => {
             const nav = document.querySelector('.navbar');
+            if (!nav) return;
+        
             if (window.scrollY > 50) {
                 nav.style.background = 'rgba(0, 0, 0, 0.95)';
                 nav.style.height = '65px';

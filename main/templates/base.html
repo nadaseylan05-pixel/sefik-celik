@@ -154,6 +154,8 @@
         
 
         document.addEventListener('click', () => {
+            if (!wrapper || !icon) return;
+        
             wrapper.classList.remove('active');
             icon.classList.replace('fa-times', 'fa-bars');
             icon.style.transform = 'rotate(0deg)';

@@ -146,6 +146,16 @@
     .read-btn:hover {
         background: #444;
     }
+    .short-text {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;   /* عدد الأسطر */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .short-text.expanded {
+        -webkit-line-clamp: unset;
+    }
 </style>
 {% endblock %}
 
@@ -181,31 +191,30 @@
                 <h2>{{ post.title }}</h2>
 
                 <!-- Short text -->
-                <p class="short-text">{{ post.text|truncatechars:140 }}</p>
+                <p class="short-text">{{ post.text}}</p>
 
                 <!-- Full text hidden -->
-                <p class="full-text">{{ post.text }}</p>
+                <!--<p class="full-text">{{ post.text }}</p>-->
 
                 <div class="date">
                     {{ post.created_at|date:"d M Y" }}
                 </div>
-
-                <!--  Read More / Show Less -->
+                
                 <a href="#" class="read-btn" onclick="
-                    const card = this.closest('.card-body'); 
-                    const shortText = card.querySelector('.short-text');
-                    const fullText = card.querySelector('.full-text');
-                    if(fullText.style.display === 'none' || fullText.style.display === '') {
-                        fullText.style.display = 'block';
-                        shortText.style.display = 'none';
-                        this.innerText = 'Daha az göster';
-                    } else {
-                        fullText.style.display = 'none';
-                        shortText.style.display = 'block';
+                    const text = this.closest('.card-body').querySelector('.short-text');
+                
+                    if(text.classList.contains('expanded')) {
+                        text.classList.remove('expanded');
                         this.innerText = 'Devamını oku';
+                    } else {
+                        text.classList.add('expanded');
+                        this.innerText = 'Daha az göster';
                     }
+                
                     return false;
-                ">Devamını oku</a>
+                ">
+                Devamını oku
+                </a>
 
             </div>
 

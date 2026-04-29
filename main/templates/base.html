@@ -136,44 +136,46 @@
     </footer>
 
     <script>
-        const wrapper = document.getElementById('menuWrapper');
-        const icon = document.getElementById('menu-icon');
+        document.addEventListener("DOMContentLoaded", function () {
         
-        wrapper.addEventListener('click', (e) => {
-            e.stopPropagation();
-            wrapper.classList.toggle('active');
+            const wrapper = document.getElementById('menuWrapper');
+            const icon = document.getElementById('menu-icon');
         
-            if (wrapper.classList.contains('active')) {
-                icon.classList.replace('fa-bars', 'fa-times');
-                icon.style.transform = 'rotate(90deg)';
-            } else {
-                icon.classList.replace('fa-times', 'fa-bars');
-                icon.style.transform = 'rotate(0deg)';
-            }
-        });
-        
-
-        document.addEventListener('click', () => {
             if (!wrapper || !icon) return;
         
-            wrapper.classList.remove('active');
-            icon.classList.replace('fa-times', 'fa-bars');
-            icon.style.transform = 'rotate(0deg)';
-        });
-
-        // تأثير بسيط عند التمرير (تغيير شفافية البار)
-       window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.navbar');
-            if (!nav) return;
+            wrapper.addEventListener('click', (e) => {
+                e.stopPropagation();
+                wrapper.classList.toggle('active');
         
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(0, 0, 0, 0.95)';
-                nav.style.height = '65px';
-            } else {
-                nav.style.background = 'rgba(0, 0, 0, 0.85)';
-                nav.style.height = '75px';
-            }
+                if (wrapper.classList.contains('active')) {
+                    icon.classList.replace('fa-bars', 'fa-times');
+                    icon.style.transform = 'rotate(90deg)';
+                } else {
+                    icon.classList.replace('fa-times', 'fa-bars');
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        
+            document.addEventListener('click', () => {
+                wrapper.classList.remove('active');
+                icon.classList.replace('fa-times', 'fa-bars');
+                icon.style.transform = 'rotate(0deg)';
+            });
+        
+            window.addEventListener('scroll', () => {
+                const nav = document.querySelector('.navbar');
+                if (!nav) return;
+        
+                if (window.scrollY > 50) {
+                    nav.style.background = 'rgba(0, 0, 0, 0.95)';
+                    nav.style.height = '65px';
+                } else {
+                    nav.style.background = 'rgba(0, 0, 0, 0.85)';
+                    nav.style.height = '75px';
+                }
+            });
+        
         });
-    </script>
+     </script>
 </body>
 </html>

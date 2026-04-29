@@ -68,7 +68,7 @@
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        .menu-wrapper:hover .dropdown-menu-custom {
+        .menu-wrapper:active .dropdown-menu-custom {
             opacity: 1; transform: translateY(0); pointer-events: auto;
         }
 
@@ -139,12 +139,22 @@
         const wrapper = document.getElementById('menuWrapper');
         const icon = document.getElementById('menu-icon');
         
-        wrapper.addEventListener('mouseenter', () => {
-            icon.classList.replace('fa-bars', 'fa-times');
-            icon.style.transform = 'rotate(90deg)';
+        wrapper.addEventListener('click', (e) => {
+            e.stopPropagation();
+            wrapper.classList.toggle('active');
+        
+            if (wrapper.classList.contains('active')) {
+                icon.classList.replace('fa-bars', 'fa-times');
+                icon.style.transform = 'rotate(90deg)';
+            } else {
+                icon.classList.replace('fa-times', 'fa-bars');
+                icon.style.transform = 'rotate(0deg)';
+            }
         });
         
-        wrapper.addEventListener('mouseleave', () => {
+
+        document.addEventListener('click', () => {
+            wrapper.classList.remove('active');
             icon.classList.replace('fa-times', 'fa-bars');
             icon.style.transform = 'rotate(0deg)';
         });

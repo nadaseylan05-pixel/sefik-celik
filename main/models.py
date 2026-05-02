@@ -169,6 +169,9 @@ class ServiceArea(models.Model):
         ordering = ['order']
         verbose_name = "Çalışma Alanı"
         verbose_name_plural = "Çalışma Alanı"
+    #Lat added
+    def get_absolute_url(self):
+        return reverse("service_area_detail", args=[self.id])    
 from django.db import models
 
 
@@ -226,6 +229,9 @@ class BlogPost(models.Model):
         ordering = ["-created_at"]
         verbose_name = "Blog Yazısı"
         verbose_name_plural = "Blog Yazıları"
+    #Last added
+    def get_absolute_url(self):
+        return reverse("blog_detail", args=[self.id])
 from django.db import models
 
 class Karier(models.Model):

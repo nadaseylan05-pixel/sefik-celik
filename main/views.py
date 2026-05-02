@@ -55,6 +55,12 @@ def work_areas_view(request):
     }
     return render(request, 'Çalışma_alanları.html', context)
 
+from django.shortcuts import get_object_or_404
+#Last added
+def service_area_detail(request, id):
+    area = get_object_or_404(ServiceArea, id=id)
+    return render(request, "service_area_detail.html", {"area": area})
+    
 from django.shortcuts import render
 from .models import BlogPage
 

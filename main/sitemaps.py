@@ -1,12 +1,12 @@
 from django.contrib.sitemaps import Sitemap
 from .models import (
-    #BlogPost,
+    BlogPost,
     #Employee,
     TeamPage,
     SiteContent,
     AboutPage,
     ServicesPage,
-    #ServiceArea,
+    ServiceArea,
     BlogPage,
     Karier
 )
@@ -70,8 +70,7 @@ class ServiceAreaSitemap(Sitemap):
         return ServiceArea.objects.all()
     def lastmod(self, obj):
         return obj.updated_at
-    def location(self, obj):
-        return obj.get_absolute_url()
+    
 
 # -------------------- Blog Pages --------------------
 class BlogPageSitemap(Sitemap):
@@ -103,8 +102,7 @@ class BlogPostSitemap(Sitemap):
     def lastmod(self, obj):
         return obj.updated_at
 
-    def location(self, obj):
-        return obj.get_absolute_url()
+   
 # -------------------- Careers --------------------
 class KarierSitemap(Sitemap):
     changefreq = "monthly"

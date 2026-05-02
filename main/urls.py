@@ -1,5 +1,5 @@
 from django.urls import path 
-from .views import home ,hakimizda,blog,ekibimiz,work_areas_view,blog,iletişim,kariyer, service_area_detail
+from .views import home ,hakimizda,blog,ekibimiz,work_areas_view,blog,iletişim,kariyer, service_area_detail, blog_detail
 
 from django.contrib.sitemaps.views import sitemap
 from main.sitemaps import  BlogPageSitemap,SiteContentSitemap, TeamPageSitemap, AboutPageSitemap, ServicesPageSitemap, KarierSitemap, ServiceAreaSitemap, BlogPostSitemap,

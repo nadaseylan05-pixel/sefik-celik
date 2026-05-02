@@ -60,7 +60,7 @@ class AboutPageSitemap(Sitemap):
         return AboutPage.objects.all()
     def lastmod(self, obj):
         return obj.updated_at
-'''
+
 # -------------------- Service Area --------------------
 class ServiceAreaSitemap(Sitemap):
     changefreq = "monthly"
@@ -70,7 +70,9 @@ class ServiceAreaSitemap(Sitemap):
         return ServiceArea.objects.all()
     def lastmod(self, obj):
         return obj.updated_at
-'''
+    def location(self, obj):
+        return obj.get_absolute_url()
+
 # -------------------- Blog Pages --------------------
 class BlogPageSitemap(Sitemap):
     changefreq = "monthly"
@@ -91,6 +93,18 @@ class BlogPostSitemap(Sitemap):
     def lastmod(self, obj):
         return obj.updated_at
 '''
+class BlogPostSitemap(Sitemap):
+    changefreq = "weekly"
+    priority = 0.7
+
+    def items(self):
+        return BlogPost.objects.all()
+
+    def lastmod(self, obj):
+        return obj.updated_at
+
+    def location(self, obj):
+        return obj.get_absolute_url()
 # -------------------- Careers --------------------
 class KarierSitemap(Sitemap):
     changefreq = "monthly"

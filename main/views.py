@@ -74,6 +74,14 @@ def blog(request):
         "posts": posts,
         "content1":content1
     })
+#Last added    
+from django.shortcuts import render, get_object_or_404
+from .models import BlogPost
+
+def blog_detail(request, id):
+    post = get_object_or_404(BlogPost, id=id)
+    return render(request, "blog_detail.html", {"post": post})
+    
 from django.shortcuts import render, get_object_or_404
 from .models import BlogPost
 

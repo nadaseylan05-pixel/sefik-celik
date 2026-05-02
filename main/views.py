@@ -57,10 +57,11 @@ def work_areas_view(request):
 
 from django.shortcuts import get_object_or_404
 #Last added
+'''
 def service_area_detail(request, id):
     area = get_object_or_404(ServiceArea, id=id)
     return render(request, "service_area_detail.html", {"area": area})
-    
+'''    
 from django.shortcuts import render
 from .models import BlogPage
 
@@ -74,14 +75,15 @@ def blog(request):
         "posts": posts,
         "content1":content1
     })
-#Last added    
+#Last added 
+'''
 from django.shortcuts import render, get_object_or_404
 from .models import BlogPost
 
 def blog_detail(request, id):
     post = get_object_or_404(BlogPost, id=id)
     return render(request, "blog_detail.html", {"post": post})
-    
+ '''   
 from django.shortcuts import render, get_object_or_404
 from .models import BlogPost
 

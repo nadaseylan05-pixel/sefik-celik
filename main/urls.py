@@ -2,17 +2,17 @@ from django.urls import path
 from .views import home ,hakimizda,blog,ekibimiz,work_areas_view,blog,iletişim,kariyer
 
 from django.contrib.sitemaps.views import sitemap
-from main.sitemaps import  BlogPageSitemap,SiteContentSitemap, TeamPageSitemap, AboutPageSitemap, ServicesPageSitemap, KarierSitemap, ServiceAreaSitemap, BlogPostSitemap
+from main.sitemaps import  BlogPageSitemap, AboutPageSitemap, ServicesPageSitemap, KarierSitemap, #ServiceAreaSitemap, BlogPostSitemap, SiteContentSitemap, TeamPageSitemap
 
 sitemaps = {
     "blog": BlogPageSitemap,
-    "site-content": SiteContentSitemap,
+    #"site-content": SiteContentSitemap,
     "team": TeamPageSitemap,
     "about": AboutPageSitemap,
     "services": ServicesPageSitemap,
     "career": KarierSitemap,
-    "service_areas": ServiceAreaSitemap,
-    "blog_posts": BlogPostSitemap,
+    #"service_areas": ServiceAreaSitemap,
+   # "blog_posts": BlogPostSitemap,
     
 }
 

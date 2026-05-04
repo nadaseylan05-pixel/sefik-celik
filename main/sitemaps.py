@@ -40,7 +40,7 @@ class EmployeeSitemap(Sitemap):
     def items(self):
         return Employee.objects.all()
 '''
-
+'''
 # -------------------- Site Content --------------------
 class SiteContentSitemap(Sitemap):
     changefreq = "monthly"
@@ -50,7 +50,7 @@ class SiteContentSitemap(Sitemap):
         return SiteContent.objects.all()
     def lastmod(self, obj):
         return obj.updated_at
-
+'''
 # -------------------- About Page --------------------
 class AboutPageSitemap(Sitemap):
     changefreq = "monthly"
@@ -60,7 +60,7 @@ class AboutPageSitemap(Sitemap):
         return AboutPage.objects.all()
     def lastmod(self, obj):
         return obj.updated_at
-
+'''
 # -------------------- Service Area --------------------
 class ServiceAreaSitemap(Sitemap):
     changefreq = "monthly"
@@ -70,7 +70,7 @@ class ServiceAreaSitemap(Sitemap):
         return ServiceArea.objects.all()
     def lastmod(self, obj):
         return obj.updated_at
-    
+'''    
 
 # -------------------- Blog Pages --------------------
 class BlogPageSitemap(Sitemap):
@@ -82,15 +82,7 @@ class BlogPageSitemap(Sitemap):
     
 
 # -------------------- Blog Posts --------------------
-'''
-class BlogPostSitemap(Sitemap):
-    changefreq = "weekly"
-    priority = 0.7
 
-    def items(self):
-        return BlogPost.objects.all()
-    def lastmod(self, obj):
-        return obj.updated_at
 '''
 class BlogPostSitemap(Sitemap):
     changefreq = "weekly"
@@ -102,7 +94,7 @@ class BlogPostSitemap(Sitemap):
     def lastmod(self, obj):
         return obj.updated_at
 
-   
+ '''  
 # -------------------- Careers --------------------
 class KarierSitemap(Sitemap):
     changefreq = "monthly"

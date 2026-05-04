@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse
+
 # Create your models here.
 # =========================
 # 1. Şirket Bilgisi (Tek kayıt)
@@ -195,7 +197,7 @@ class BlogPage(models.Model):
     class Meta:
         verbose_name = "Blog Sayfası"
         verbose_name_plural = "Blog Sayfası"
-print("MODELS LOADED")
+
 
 # =========================
 # Blog Post

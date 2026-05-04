@@ -5,12 +5,12 @@ from django.contrib.sitemaps.views import sitemap
 from main.sitemaps import  BlogPageSitemap, AboutPageSitemap, ServicesPageSitemap, KarierSitemap #ServiceAreaSitemap, BlogPostSitemap, SiteContentSitemap, TeamPageSitemap
 
 sitemaps = {
-    "blog": BlogPageSitemap,
+    #"blog": BlogPageSitemap,
     #"site-content": SiteContentSitemap,
     #"team": TeamPageSitemap,
     "about": AboutPageSitemap,
-    "services": ServicesPageSitemap,
-    "career": KarierSitemap,
+   # "services": ServicesPageSitemap,
+    #"career": KarierSitemap,
     #"service_areas": ServiceAreaSitemap,
    # "blog_posts": BlogPostSitemap,
     

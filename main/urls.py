@@ -2,7 +2,7 @@ from django.urls import path
 from .views import home ,hakimizda,blog,ekibimiz,work_areas_view,blog,iletişim,kariyer
 
 from django.contrib.sitemaps.views import sitemap
-from main.sitemaps import  BlogPageSitemap, AboutPageSitemap, ServicesPageSitemap, KarierSitemap, #ServiceAreaSitemap, BlogPostSitemap, SiteContentSitemap, TeamPageSitemap
+from main.sitemaps import  BlogPageSitemap, AboutPageSitemap, ServicesPageSitemap, KarierSitemap #ServiceAreaSitemap, BlogPostSitemap, SiteContentSitemap, TeamPageSitemap
 
 sitemaps = {
     "blog": BlogPageSitemap,

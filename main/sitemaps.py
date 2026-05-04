@@ -18,8 +18,8 @@ class ServicesPageSitemap(Sitemap):
 
     def items(self):
         return ServicesPage.objects.all()
-    def lastmod(self, obj):
-        return obj.updated_at
+   # def lastmod(self, obj):
+     #   return obj.updated_at
 
 # -------------------- Team --------------------
 class TeamPageSitemap(Sitemap):
@@ -28,8 +28,8 @@ class TeamPageSitemap(Sitemap):
 
     def items(self):
         return TeamPage.objects.all()
-    def lastmod(self, obj):
-        return obj.updated_at
+   # def lastmod(self, obj):
+     #   return obj.updated_at
 
 # -------------------- Employees --------------------
 '''
@@ -58,8 +58,8 @@ class AboutPageSitemap(Sitemap):
 
     def items(self):
         return AboutPage.objects.all()
-    def lastmod(self, obj):
-        return obj.updated_at
+    #def lastmod(self, obj):
+      #  return obj.updated_at
 '''
 # -------------------- Service Area --------------------
 class ServiceAreaSitemap(Sitemap):
@@ -102,5 +102,5 @@ class KarierSitemap(Sitemap):
 
     def items(self):
         return Karier.objects.all()
-    def lastmod(self, obj):
-        return obj.updated_at
+    #def lastmod(self, obj):
+     #   return obj.updated_at

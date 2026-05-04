@@ -7,7 +7,7 @@ from main.sitemaps import  BlogPageSitemap, AboutPageSitemap, ServicesPageSitema
 sitemaps = {
     "blog": BlogPageSitemap,
     #"site-content": SiteContentSitemap,
-    "team": TeamPageSitemap,
+    #"team": TeamPageSitemap,
     "about": AboutPageSitemap,
     "services": ServicesPageSitemap,
     "career": KarierSitemap,

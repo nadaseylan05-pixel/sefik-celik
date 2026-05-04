@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from .models import CompanyInfo, SiteContent,Employee,AboutPage
 
+from django.http import HttpResponse
 
+def google_verify(request):
+    return HttpResponse("google-site-verification: google005df6b4842867af.html")
 # Create your views here.
 def home(request):
     company = CompanyInfo.objects.first()

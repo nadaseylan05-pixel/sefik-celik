@@ -29,5 +29,5 @@ urlpatterns=[
     #path('send_message/', send_message, name='send_message'),
     path('kariyer/', kariyer, name='kariyer'),
     #path('sitemaps.xml', sitemap, {'sitemaps':sitemap}, name='django.contrib.sitemaps.views.sitemaps'),
-    ##path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),    
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),    
 ]

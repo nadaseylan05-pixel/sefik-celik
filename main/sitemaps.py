@@ -17,7 +17,7 @@ class ServicesPageSitemap(Sitemap):
     priority = 0.9
 
     def items(self):
-        return ServicesPage.objects.all()
+        return ServicesPage.objects.all().order_by('-created_at')
    # def lastmod(self, obj):
      #   return obj.updated_at
 
@@ -27,7 +27,7 @@ class TeamPageSitemap(Sitemap):
     priority = 0.5
 
     def items(self):
-        return TeamPage.objects.all()
+        return TeamPage.objects.all().order_by('id')
    # def lastmod(self, obj):
      #   return obj.updated_at
 
@@ -57,7 +57,7 @@ class AboutPageSitemap(Sitemap):
     priority = 0.5
 
     def items(self):
-        return AboutPage.objects.all()
+        return AboutPage.objects.all().order_by('id')
     #def lastmod(self, obj):
       #  return obj.updated_at
 '''
@@ -78,7 +78,7 @@ class BlogPageSitemap(Sitemap):
     priority = 0.5
 
     def items(self):
-        return BlogPage.objects.all()
+        return BlogPage.objects.all().order_by('-created_at')
     
 
 # -------------------- Blog Posts --------------------
@@ -101,6 +101,6 @@ class KarierSitemap(Sitemap):
     priority = 0.4
 
     def items(self):
-        return Karier.objects.all()
+        return Karier.objects.all().order_by('-created_at')
     #def lastmod(self, obj):
      #   return obj.updated_at
